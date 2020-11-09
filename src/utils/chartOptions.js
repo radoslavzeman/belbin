@@ -1,13 +1,12 @@
 const { chart } = require("highcharts")
 
 const chartOptions = (resultValues) => {
-		// if (!resultValues.hasProperty('sh')) // TODO test if resultValues contains all properties
-		console.log('from chartOptions');
+		// TODO test if resultValues contains all properties
 		return ({
 			chart: {
 				type: "variablepie",
 			},
-			colors: ["#2ec277", "#2db799", "#b7e886", "#6d5494", "#0077b4"],
+			colors: ["#2ec277", "#2db799", "#b7e886", "#007770"],
 			title: {
 				text: "Váš výsledok Belbinovho testu"
 			},
@@ -23,18 +22,43 @@ const chartOptions = (resultValues) => {
 						{
 							name: "Režisér (SH)",
 							y: 100,
-							z: resultValues.sh //inputs['1a'] + inputs['2a']
+							z: resultValues.sh,
 						},
 						{
 							name: "Zháňač (RI)",
 							y: 100,
-							z: resultValues.ri // inputs['1b'] + inputs['2b']
+							z: resultValues.ri,
 						},
-						// {
-						// 	name: "Zháňač (RI)",
-						// 	y: 100,
-						// 	z: resultValues.ri // inputs['1b'] + inputs['2b']
-						// },
+						{
+							name: "Predseda (CO)",
+							y: 100,
+							z: resultValues.co,
+						},
+						{
+							name: "Hasič (TW)",
+							y: 100,
+							z: resultValues.tw,
+						},
+						{
+							name: "Ťahač (IM)",
+							y: 100,
+							z: resultValues.im,
+						},
+						{
+							name: "Doťahovač (cf)",
+							y: 100,
+							z: resultValues.cf,
+						},
+						{
+							name: "Chrlič (PL)",
+							y: 100,
+							z: resultValues.pl,
+						},
+						{
+							name: "Analytik (ME)",
+							y: 100,
+							z: resultValues.me,
+						},
 					]
 				}
 			]
