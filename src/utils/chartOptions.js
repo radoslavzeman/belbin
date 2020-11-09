@@ -2,6 +2,7 @@ const { chart } = require("highcharts")
 
 const chartOptions = (resultValues) => {
 		// TODO test if resultValues contains all properties
+		const exp = 1;
 		return ({
 			chart: {
 				type: "variablepie",
@@ -21,43 +22,43 @@ const chartOptions = (resultValues) => {
 					data: [
 						{
 							name: "Režisér (SH)",
-							y: 100,
-							z: resultValues.sh,
+							y: 1,
+							z: resultValues.sh ** exp,
 						},
 						{
 							name: "Zháňač (RI)",
-							y: 100,
-							z: resultValues.ri,
+							y: 1,
+							z: resultValues.ri ** exp,
 						},
 						{
 							name: "Predseda (CO)",
-							y: 100,
-							z: resultValues.co,
+							y: 1,
+							z: resultValues.co ** exp,
 						},
 						{
 							name: "Hasič (TW)",
-							y: 100,
-							z: resultValues.tw,
+							y: 1,
+							z: resultValues.tw ** exp,
 						},
 						{
 							name: "Ťahač (IM)",
-							y: 100,
-							z: resultValues.im,
+							y: 1,
+							z: resultValues.im ** exp,
 						},
 						{
-							name: "Doťahovač (cf)",
-							y: 100,
-							z: resultValues.cf,
+							name: "Doťahovač (CF)",
+							y: 1,
+							z: resultValues.cf ** exp,
 						},
 						{
 							name: "Chrlič (PL)",
-							y: 100,
-							z: resultValues.pl,
+							y: 1,
+							z: resultValues.pl ** exp,
 						},
 						{
 							name: "Analytik (ME)",
-							y: 100,
-							z: resultValues.me,
+							y: 1,
+							z: resultValues.me ** exp,
 						},
 					]
 				}
