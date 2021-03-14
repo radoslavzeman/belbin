@@ -1,7 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles'
 import React, { useState } from 'react'
 
+import { changeValue } from '../store/inputsSlice'
+import { useAppDispatch } from '../store/storeHooks'
+
 const useMyForm = () => {
+  const dispatch = useAppDispatch()
+
   const [inputs, setInputs] = useState<{ [index: string]: number }>({
     q1a: 0,
     q1b: 0,
@@ -129,7 +134,8 @@ const useMyForm = () => {
     if (value === '') value = 0
 
     const newInputs = { ...inputs, [name]: parseInt(value, 10) }
-    setInputs((inps) => ({ ...inps, [event.target.name]: parseInt(value, 10) }))
+    setInputs((oldInputs) => ({ ...oldInputs, [event.target.name]: parseInt(value, 10) }))
+    dispatch(changeValue({ id: name, value: parseInt(value, 10) }))
   }
   return {
     handleSubmit,
