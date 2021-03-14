@@ -11,6 +11,7 @@ import variablePie from 'highcharts/modules/variable-pie'
 import HighchartsReact from 'highcharts-react-official'
 import React, { useEffect, useState } from 'react'
 
+import { useAppSelector } from '../store/storeHooks'
 // chart
 import chartOptions from '../utils/chartOptions'
 import { useMyForm, useStyles } from '../utils/hooks'
@@ -40,6 +41,9 @@ function BelbinForm() {
       // q8: +(inputs.q8a) + +(inputs.q8b) + +(inputs.q8c) + +(inputs.q8d) + +(inputs.q8e) + +(inputs.q8f) + +(inputs.q8g) + +(inputs.q8h),
     })
   }, [inputs, setSums])
+
+  const storeInputs = useAppSelector((state) => state.inputs)
+  console.log('storeInputs', storeInputs)
 
   return (
     <>
