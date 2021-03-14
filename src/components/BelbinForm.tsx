@@ -12,7 +12,6 @@ import HighchartsReact from 'highcharts-react-official'
 import React, { useEffect, useState } from 'react'
 
 import { useAppSelector } from '../store/storeHooks'
-// chart
 import chartOptions from '../utils/chartOptions'
 import { useMyForm, useStyles } from '../utils/hooks'
 import { labels } from '../utils/labels'
@@ -23,7 +22,9 @@ variablePie(Highcharts)
 function BelbinForm() {
   const classes = useStyles()
   const [options, setOptions] = useState<any>() // chart options
-  const { inputs, handleInputChange, handleSubmit, results, sums, setSums, errors } = useMyForm()
+  const { handleInputChange, handleSubmit, results, sums, setSums, errors } = useMyForm()
+
+  const inputs = useAppSelector((state) => state.inputs)
 
   useEffect(() => {
     setOptions(chartOptions(results)) // chart
@@ -38,12 +39,10 @@ function BelbinForm() {
       q5: +inputs.q5a + +inputs.q5b + +inputs.q5c + +inputs.q5d + +inputs.q5e + +inputs.q5f + +inputs.q5g + +inputs.q5h,
       q6: +inputs.q6a + +inputs.q6b + +inputs.q6c + +inputs.q6d + +inputs.q6e + +inputs.q6f + +inputs.q6g + +inputs.q6h,
       q7: +inputs.q7a + +inputs.q7b + +inputs.q7c + +inputs.q7d + +inputs.q7e + +inputs.q7f + +inputs.q7g + +inputs.q7h,
-      // q8: +(inputs.q8a) + +(inputs.q8b) + +(inputs.q8c) + +(inputs.q8d) + +(inputs.q8e) + +(inputs.q8f) + +(inputs.q8g) + +(inputs.q8h),
     })
   }, [inputs, setSums])
 
-  const storeInputs = useAppSelector((state) => state.inputs)
-  console.log('storeInputs', storeInputs)
+  console.log('inputs in store', inputs)
 
   return (
     <>
