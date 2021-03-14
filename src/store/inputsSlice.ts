@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { getSums } from './getSums'
 import { inputsSliceInitialState, inputsSliceInitialStatePrefilled } from './initialStates'
 
 export const inputsSlice = createSlice({
@@ -9,7 +10,9 @@ export const inputsSlice = createSlice({
     changeValue: {
       reducer(state, action: PayloadAction<{ id: string; value: number }, string>) {
         // eslint-disable-next-line no-param-reassign
-        state[action.payload.id] = action.payload.value
+        state.inputs[action.payload.id] = action.payload.value
+        // eslint-disable-next-line no-param-reassign
+        state.sums = getSums(state.inputs)
       },
       prepare(payload: { id: string; value: number }) {
         return { payload }

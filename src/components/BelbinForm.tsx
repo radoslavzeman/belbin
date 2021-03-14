@@ -22,27 +22,11 @@ variablePie(Highcharts)
 function BelbinForm() {
   const classes = useStyles()
   const [options, setOptions] = useState<any>() // chart options
-  const { handleInputChange, handleSubmit, results, sums, setSums, errors } = useMyForm()
-
-  const inputs = useAppSelector((state) => state.inputs)
+  const { handleSubmit, results, errors } = useMyForm()
 
   useEffect(() => {
     setOptions(chartOptions(results)) // chart
   }, [results])
-
-  useEffect(() => {
-    setSums({
-      q1: +inputs.q1a + +inputs.q1b + +inputs.q1c + +inputs.q1d + +inputs.q1e + +inputs.q1f + +inputs.q1g + +inputs.q1h,
-      q2: +inputs.q2a + +inputs.q2b + +inputs.q2c + +inputs.q2d + +inputs.q2e + +inputs.q2f + +inputs.q2g + +inputs.q2h,
-      q3: +inputs.q3a + +inputs.q3b + +inputs.q3c + +inputs.q3d + +inputs.q3e + +inputs.q3f + +inputs.q3g + +inputs.q3h,
-      q4: +inputs.q4a + +inputs.q4b + +inputs.q4c + +inputs.q4d + +inputs.q4e + +inputs.q4f + +inputs.q4g + +inputs.q4h,
-      q5: +inputs.q5a + +inputs.q5b + +inputs.q5c + +inputs.q5d + +inputs.q5e + +inputs.q5f + +inputs.q5g + +inputs.q5h,
-      q6: +inputs.q6a + +inputs.q6b + +inputs.q6c + +inputs.q6d + +inputs.q6e + +inputs.q6f + +inputs.q6g + +inputs.q6h,
-      q7: +inputs.q7a + +inputs.q7b + +inputs.q7c + +inputs.q7d + +inputs.q7e + +inputs.q7f + +inputs.q7g + +inputs.q7h,
-    })
-  }, [inputs, setSums])
-
-  console.log('inputs in store', inputs)
 
   return (
     <>
@@ -69,38 +53,8 @@ function BelbinForm() {
             </Grid>
           </Paper>
 
-          {/* new refactor */}
           {Object.entries(labels).map(([id, section]) => (
-            // <Section title={section.title} questions={section.questions} id={1} />
-            <Paper className={classes.paper}>
-              <Grid container spacing={1}>
-                <Grid item xs={10} sm={11}>
-                  <h4>{section.title}</h4>
-                </Grid>
-                <Grid item xs={2} sm={1}>
-                  <h3>{sums[id]}</h3>
-                </Grid>
-              </Grid>
-              {Object.entries(section.questions).map(([questionKey, questionText]) => (
-                <>
-                  <Grid container spacing={1}>
-                    <Grid item xs={10} sm={11}>
-                      {questionText}
-                    </Grid>
-                    <Grid item xs={2} sm={1}>
-                      <TextField
-                        id={questionKey}
-                        // inputProps={{ key: { questionKey } }} // TODO this does not work
-                        name={questionKey}
-                        type="number"
-                        onChange={handleInputChange}
-                        value={inputs[questionKey]}
-                      />
-                    </Grid>
-                  </Grid>
-                </>
-              ))}
-            </Paper>
+            <Section title={section.title} questions={section.questions} id={id} />
           ))}
 
           <div className={classes.buttons}>

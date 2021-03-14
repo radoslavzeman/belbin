@@ -6,17 +6,9 @@ import { useAppDispatch, useAppSelector } from '../store/storeHooks'
 
 const useMyForm = () => {
   const dispatch = useAppDispatch()
-  const inputs = useAppSelector((state) => state.inputs)
+  const inputs = useAppSelector((state) => state.inputs.inputs)
+  const sums = useAppSelector((state) => state.inputs.sums)
 
-  const [sums, setSums] = useState<{ [index: string]: number }>({
-    q1: 0,
-    q2: 0,
-    q3: 0,
-    q4: 0,
-    q5: 0,
-    q6: 0,
-    q7: 0,
-  })
   const [results, setResults] = useState({})
   const [errors, setErrors] = useState(' ')
 
@@ -71,10 +63,7 @@ const useMyForm = () => {
   return {
     handleSubmit,
     handleInputChange,
-    inputs,
     results,
-    sums,
-    setSums,
     errors,
   }
 }
