@@ -5,7 +5,7 @@ import { inputsSliceInitialState, inputsSliceInitialStatePrefilled } from './ini
 
 export const inputsSlice = createSlice({
   name: 'inputs',
-  initialState: inputsSliceInitialStatePrefilled,
+  initialState: inputsSliceInitialState,
   reducers: {
     changeValue: {
       reducer(state, action: PayloadAction<{ id: string; value: number }, string>) {
