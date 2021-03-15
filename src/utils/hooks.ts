@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   layout: {
-    width: 'auto',
+    // width: 'auto',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
