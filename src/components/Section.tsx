@@ -51,9 +51,9 @@ const Section = ({ questions, title, id }: Props) => {
                 tabIndex={-1}
                 selected={isItemSelected}
               >
-                <TableCell padding="checkbox">
-                  <Checkbox checked={isItemSelected} inputProps={{ 'aria-labelledby': id }} />
-                </TableCell>
+                {/* <TableCell padding="checkbox"> */}
+                {/*  <Checkbox checked={isItemSelected} inputProps={{ 'aria-labelledby': id }} /> */}
+                {/* </TableCell> */}
                 <TableCell>
                   <Typography variant="body1">{questionText}</Typography>
                 </TableCell>
