@@ -1,7 +1,8 @@
+/* eslint no-param-reassign: 'off' */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { getSums } from './getSums'
-import { inputsSliceInitialState, inputsSliceInitialStatePrefilled } from './initialStates'
+import { inputsSliceInitialState } from './initialStates'
 
 export const inputsSlice = createSlice({
   name: 'inputs',
@@ -9,12 +10,19 @@ export const inputsSlice = createSlice({
   reducers: {
     changeValue: {
       reducer(state, action: PayloadAction<{ id: string; value: number }, string>) {
-        // eslint-disable-next-line no-param-reassign
-        state.inputs[action.payload.id] = action.payload.value
-        // eslint-disable-next-line no-param-reassign
+        state.inputs[action.payload.id].value = action.payload.value
         state.sums = getSums(state.inputs)
       },
       prepare(payload: { id: string; value: number }) {
+        return { payload }
+      },
+    },
+    toggleInput: {
+      reducer(state, action: PayloadAction<{ id: string }, string>) {
+        state.inputs[action.payload.id].selected = !state.inputs[action.payload.id].selected
+        state.sums = getSums(state.inputs)
+      },
+      prepare(payload: { id: string }) {
         return { payload }
       },
     },
@@ -22,6 +30,6 @@ export const inputsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { changeValue } = inputsSlice.actions
+export const { changeValue, toggleInput } = inputsSlice.actions
 
 export default inputsSlice.reducer

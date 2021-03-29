@@ -1,4 +1,4 @@
-import { Checkbox } from '@material-ui/core'
+import Checkbox from '@material-ui/core/Checkbox'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
@@ -8,9 +8,10 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableRow from '@material-ui/core/TableRow'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import React, { useEffect } from 'react'
+import React, { ChangeEvent, MouseEvent } from 'react'
 
-import { useAppSelector } from '../store/storeHooks'
+import { changeValue, toggleInput } from '../store/inputsSlice'
+import { useAppDispatch, useAppSelector } from '../store/storeHooks'
 import { useMyForm, useStyles } from '../utils/hooks'
 
 interface Props {
@@ -21,13 +22,19 @@ interface Props {
 
 const Section = ({ questions, title, id }: Props) => {
   const classes = useStyles()
-
+  const dispatch = useAppDispatch()
   const { handleInputChange } = useMyForm()
 
   const inputs = useAppSelector((state) => state.inputs.inputs)
   const sums = useAppSelector((state) => state.inputs.sums)
 
-  const isItemSelected = false
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLTableRowElement>, idx: string) => {
+    if (inputs[idx].selected) {
+      dispatch(changeValue({ id: idx, value: 0 }))
+    }
+    dispatch(toggleInput({ id: idx }))
+  }
+
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={1}>
@@ -43,29 +50,31 @@ const Section = ({ questions, title, id }: Props) => {
           <TableBody>
             {Object.entries(questions).map(([questionKey, questionText]) => (
               <TableRow
-                key={id}
+                key={questionKey}
                 hover
-                onClick={(event) => {}}
+                // onClick={(e) => handleChange(e, questionKey)}
                 role="checkbox"
-                aria-checked={isItemSelected}
+                aria-checked={inputs[questionKey].selected}
                 tabIndex={-1}
-                selected={isItemSelected}
+                selected={inputs[questionKey].selected}
               >
-                {/* <TableCell padding="checkbox"> */}
-                {/*  <Checkbox checked={isItemSelected} inputProps={{ 'aria-labelledby': id }} /> */}
-                {/* </TableCell> */}
                 <TableCell>
                   <Typography variant="body1">{questionText}</Typography>
                 </TableCell>
                 <TableCell>
                   <TextField
                     id={questionKey}
-                    // inputProps={{ key: { questionKey } }} // TODO this does not work
                     name={questionKey}
                     type="number"
                     onChange={handleInputChange}
-                    value={inputs[questionKey]}
+                    disabled={!inputs[questionKey].selected}
+                    value={inputs[questionKey].value}
+                    variant="outlined"
+                    size="small"
                   />
+                </TableCell>
+                <TableCell padding="checkbox">
+                  <Checkbox checked={inputs[questionKey].selected} onChange={(e) => handleChange(e, questionKey)} />
                 </TableCell>
               </TableRow>
             ))}
