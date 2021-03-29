@@ -65,9 +65,10 @@ function BelbinForm() {
             <Button variant="contained" color="primary" onClick={handleSubmit} className={classes.button}>
               Zobraziť výsledok
             </Button>
+          </Grid>
+          <Grid container item xs={12} justify="center" style={{ color: '#f00', paddingBottom: 24 }}>
             {errors}
           </Grid>
-
           {!errors && (
             <>
               <Grid item xs={12}>
