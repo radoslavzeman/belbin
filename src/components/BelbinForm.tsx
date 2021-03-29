@@ -69,11 +69,18 @@ function BelbinForm() {
           </Grid>
 
           {!errors && (
-            <Grid item xs={12}>
-              <Paper className={classes.chart}>
-                <HighchartsReact highcharts={Highcharts} options={options} useRef="chartComponent1" />
-              </Paper>
-            </Grid>
+            <>
+              <Grid item xs={12}>
+                <Paper className={classes.chart}>
+                  <HighchartsReact highcharts={Highcharts} options={options} useRef="chartComponent1" />
+                </Paper>
+              </Grid>
+              <Grid container item xs={12} justify="center">
+                <Button variant="outlined" color="secondary" onClick={() => window.print()} className={classes.button}>
+                  Vytlačiť výsledok
+                </Button>
+              </Grid>
+            </>
           )}
         </Grid>
       </Container>

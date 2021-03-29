@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
   },
   chart: {
     padding: theme.spacing(1, 0),
-    marginBottom: theme.spacing(3),
   },
 }))
 
