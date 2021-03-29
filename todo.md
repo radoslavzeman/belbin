@@ -1,15 +1,17 @@
 # TODO
 
 ### Todo
-* question selection before assingning points
-* replase component states with redux state
 * custom chart labels
-* pdf download
-* session storage
 * improve UX/UI
-* refactor and clean up
+* better pdf download
+* refactor errors & form hook to redux
+* session storage (?)
+* use pagination (?)
 
 ### Done
+* basic download
+* replace component states with redux state
+* question selection before assingning points
 * add redux
 * expand to all questions (text and chart)
 * live sum 10 validation
