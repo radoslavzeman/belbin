@@ -1,6 +1,6 @@
-import { TextField } from '@material-ui/core'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
+import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
@@ -13,16 +13,19 @@ import React, { useEffect, useState } from 'react'
 
 import { useAppSelector } from '../store/storeHooks'
 import chartOptions from '../utils/chartOptions'
-import { useMyForm, useStyles } from '../utils/hooks'
+import { useMyForm } from '../utils/hooks'
 import { labels } from '../utils/labels'
 import Section from './Section'
+import useStyles from './useStyles'
 
 variablePie(Highcharts)
 
 function BelbinForm() {
   const classes = useStyles()
   const [options, setOptions] = useState<any>() // chart options
-  const { handleSubmit, results, errors } = useMyForm()
+  const { handleSubmit, errors } = useMyForm()
+
+  const results = useAppSelector((state) => state.inputs.results)
 
   useEffect(() => {
     setOptions(chartOptions(results)) // chart
@@ -40,39 +43,40 @@ function BelbinForm() {
         </Toolbar>
       </AppBar>
 
-      <main className={classes.layout}>
-        <Grid container spacing={3}>
-          <Paper className={classes.paper}>
-            <Grid container spacing={1}>
-              <div>
-                Tento dotazník má celkovo 7 sekcií označených rímskymi číslicami. V každej sekcii dotazníka si vyberte
-                tie výroky, ktoré vás najlepšie vystihujú. Môžete si vybrať jeden, dva, alebo viac výrokov. Vybrané
-                výroky potom ohodnoťte bodovým hodnotením tak, že medzi ne rozdelíte vždy 10 bodov v každej sekcii. Ako
-                pomôcka vám može slúžiť súčet rozdelených bodov pre danú sekciu zobrazený vpravo hore.
-              </div>
-            </Grid>
-          </Paper>
-
+      <Container maxWidth="md" component="main">
+        <Grid container direction="column">
+          <Grid item xs={12}>
+            <Paper className={classes.initText}>
+              <Typography variant="body2">
+                Tento dotazník má celkovo 7 sekcií označených rímskymi číslicami. V každej sekcii dotazníka si najskôr
+                vyberte tie výroky, ktoré vás najlepšie vystihujú. Môžete si vybrať jeden, dva, alebo viac výrokov.
+                Vybrané výroky potom ohodnoťte bodovým hodnotením tak, že medzi ne rozdelíte vždy 10 bodov v každej
+                sekcii. Ako pomôcka vám može poslúžiť súčet rozdelených bodov pre danú sekciu zobrazený vpravo hore.
+              </Typography>
+            </Paper>
+          </Grid>
           {Object.entries(labels).map(([id, section]) => (
-            <Section title={section.title} questions={section.questions} id={id} />
+            <Grid item xs={12}>
+              <Section title={section.title} questions={section.questions} id={id} />
+            </Grid>
           ))}
 
-          <div className={classes.buttons}>
+          <Grid container item xs={12} justify="center">
             <Button variant="contained" color="primary" onClick={handleSubmit} className={classes.button}>
               Zobraziť výsledok
             </Button>
             {errors}
-          </div>
+          </Grid>
 
           {!errors && (
-            <Paper className={classes.paper}>
-              <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Paper className={classes.chart}>
                 <HighchartsReact highcharts={Highcharts} options={options} useRef="chartComponent1" />
-              </Grid>
-            </Paper>
+              </Paper>
+            </Grid>
           )}
         </Grid>
-      </main>
+      </Container>
     </>
   )
 }

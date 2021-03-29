@@ -1,4 +1,4 @@
-import { inputsSliceInitialState } from './initialStates'
+import { inputsSliceInitialState, Results } from '../store/initialStates'
 
 export const computePartialSum = (idxs: string[], inputs: typeof inputsSliceInitialState.inputs) => {
   let sectionSum = 0
@@ -18,7 +18,7 @@ export const getSums = (inputs: typeof inputsSliceInitialState.inputs) => ({
   q7: computePartialSum(['q7a', 'q7b', 'q7c', 'q7d', 'q7e', 'q7f', 'q7g', 'q7h'], inputs),
 })
 
-export const getResults = (inputs: typeof inputsSliceInitialState.inputs) => ({
+export const getResults = (inputs: typeof inputsSliceInitialState.inputs): Results => ({
   sh: computePartialSum(['q1f', 'q2e', 'q3c', 'q4b', 'q5d', 'q6g', 'q7a'], inputs),
   ri: computePartialSum(['q1a', 'q2c', 'q3f', 'q4g', 'q5e', 'q6h', 'q7d'], inputs),
   co: computePartialSum(['q1d', 'q2b', 'q3a', 'q4h', 'q5f', 'q6c', 'q7g'], inputs),
@@ -28,13 +28,3 @@ export const getResults = (inputs: typeof inputsSliceInitialState.inputs) => ({
   pl: computePartialSum(['q1c', 'q2g', 'q3d', 'q4e', 'q5h', 'q6a', 'q7f'], inputs),
   me: computePartialSum(['q1h', 'q2d', 'q3g', 'q4c', 'q5a', 'q6e', 'q7b'], inputs),
 })
-
-// export const getSums1 = (inputs: typeof inputsSliceInitialState.inputs) => ({
-//   q1: +inputs.q1a + +inputs.q1b + +inputs.q1c + +inputs.q1d + +inputs.q1e + +inputs.q1f + +inputs.q1g + +inputs.q1h,
-//   q2: +inputs.q2a + +inputs.q2b + +inputs.q2c + +inputs.q2d + +inputs.q2e + +inputs.q2f + +inputs.q2g + +inputs.q2h,
-//   q3: +inputs.q3a + +inputs.q3b + +inputs.q3c + +inputs.q3d + +inputs.q3e + +inputs.q3f + +inputs.q3g + +inputs.q3h,
-//   q4: +inputs.q4a + +inputs.q4b + +inputs.q4c + +inputs.q4d + +inputs.q4e + +inputs.q4f + +inputs.q4g + +inputs.q4h,
-//   q5: +inputs.q5a + +inputs.q5b + +inputs.q5c + +inputs.q5d + +inputs.q5e + +inputs.q5f + +inputs.q5g + +inputs.q5h,
-//   q6: +inputs.q6a + +inputs.q6b + +inputs.q6c + +inputs.q6d + +inputs.q6e + +inputs.q6f + +inputs.q6g + +inputs.q6h,
-//   q7: +inputs.q7a + +inputs.q7b + +inputs.q7c + +inputs.q7d + +inputs.q7e + +inputs.q7f + +inputs.q7g + +inputs.q7h,
-// })

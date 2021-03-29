@@ -12,7 +12,8 @@ import React, { ChangeEvent, MouseEvent } from 'react'
 
 import { changeValue, toggleInput } from '../store/inputsSlice'
 import { useAppDispatch, useAppSelector } from '../store/storeHooks'
-import { useMyForm, useStyles } from '../utils/hooks'
+import { useMyForm } from '../utils/hooks'
+import useStyles from './useStyles'
 
 interface Props {
   questions: Object
@@ -29,6 +30,7 @@ const Section = ({ questions, title, id }: Props) => {
   const sums = useAppSelector((state) => state.inputs.sums)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLTableRowElement>, idx: string) => {
+    e.stopPropagation()
     if (inputs[idx].selected) {
       dispatch(changeValue({ id: idx, value: 0 }))
     }
@@ -37,16 +39,16 @@ const Section = ({ questions, title, id }: Props) => {
 
   return (
     <Paper className={classes.paper}>
-      <Grid container spacing={1}>
-        <Grid item xs={10} sm={11}>
-          <h3>{title}</h3>
-        </Grid>
-        <Grid item xs={2} sm={1}>
-          <h3>{sums[id]}</h3>
-        </Grid>
+      <Grid container className={classes.sectionHeader}>
+        <Typography variant="h6" className={classes.sectionTitle}>
+          {title}
+        </Typography>
+        <Typography variant="h6" className={classes.sectionSum}>
+          {sums[id]}
+        </Typography>
       </Grid>
       <TableContainer>
-        <Table>
+        <Table size="small">
           <TableBody>
             {Object.entries(questions).map(([questionKey, questionText]) => (
               <TableRow
@@ -58,10 +60,13 @@ const Section = ({ questions, title, id }: Props) => {
                 tabIndex={-1}
                 selected={inputs[questionKey].selected}
               >
+                <TableCell padding="checkbox">
+                  <Checkbox checked={inputs[questionKey].selected} onChange={(e) => handleChange(e, questionKey)} />
+                </TableCell>
                 <TableCell>
                   <Typography variant="body1">{questionText}</Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell style={{ width: 100 }}>
                   <TextField
                     id={questionKey}
                     name={questionKey}
@@ -72,9 +77,6 @@ const Section = ({ questions, title, id }: Props) => {
                     variant="outlined"
                     size="small"
                   />
-                </TableCell>
-                <TableCell padding="checkbox">
-                  <Checkbox checked={inputs[questionKey].selected} onChange={(e) => handleChange(e, questionKey)} />
                 </TableCell>
               </TableRow>
             ))}

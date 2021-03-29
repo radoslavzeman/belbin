@@ -1,16 +1,14 @@
-import { makeStyles } from '@material-ui/core/styles'
 import { useState } from 'react'
 
-import { getResults } from '../store/getSums'
-import { changeValue } from '../store/inputsSlice'
+import { changeValue, setResults } from '../store/inputsSlice'
 import { useAppDispatch, useAppSelector } from '../store/storeHooks'
+import { getResults } from './getSums'
 
 const useMyForm = () => {
   const dispatch = useAppDispatch()
   const inputs = useAppSelector((state) => state.inputs.inputs)
   const sums = useAppSelector((state) => state.inputs.sums)
 
-  const [results, setResults] = useState({})
   const [errors, setErrors] = useState(' ')
 
   const validateSubmit = () => {
@@ -27,11 +25,7 @@ const useMyForm = () => {
       setErrors('V každej sekcii treba rozdeliť presne 10 bodov.')
     } else {
       setErrors('')
-      // setResults({
-      //   sh: +(inputs.q1a) + +(inputs.q1b) + +(inputs.q1c) + +(inputs.q1d) + +(inputs.q1e) + +(inputs.q1f) + +(inputs.q1g) + +(inputs.q1h),
-      //   ri: +(inputs.q2a) + +(inputs.q2b) + +(inputs.q2c) + +(inputs.q2d) + +(inputs.q2e) + +(inputs.q2f) + +(inputs.q2g) + +(inputs.q2h),
-      // });
-      setResults(getResults(inputs))
+      dispatch(setResults({ results: getResults(inputs) }))
     }
   }
 
@@ -55,46 +49,8 @@ const useMyForm = () => {
   return {
     handleSubmit,
     handleInputChange,
-    results,
     errors,
   }
 }
-
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    position: 'relative',
-  },
-  layout: {
-    // width: 'auto',
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(1),
-    padding: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(3),
-      marginBottom: theme.spacing(1),
-      padding: theme.spacing(3),
-    },
-  },
-  stepper: {
-    padding: theme.spacing(3, 0, 5),
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-  },
-}))
-
-export { useMyForm, useStyles }
+// eslint-disable-next-line import/prefer-default-export
+export { useMyForm }

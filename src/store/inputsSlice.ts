@@ -1,8 +1,8 @@
 /* eslint no-param-reassign: 'off' */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { getSums } from './getSums'
-import { inputsSliceInitialState } from './initialStates'
+import { getSums } from '../utils/getSums'
+import { inputsSliceInitialState, Results } from './initialStates'
 
 export const inputsSlice = createSlice({
   name: 'inputs',
@@ -26,10 +26,18 @@ export const inputsSlice = createSlice({
         return { payload }
       },
     },
+    setResults: {
+      reducer(state, action: PayloadAction<{ results: Results }, string>) {
+        state.results = action.payload.results
+      },
+      prepare(payload: { results: Results }) {
+        return { payload }
+      },
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { changeValue, toggleInput } = inputsSlice.actions
+export const { changeValue, toggleInput, setResults } = inputsSlice.actions
 
 export default inputsSlice.reducer

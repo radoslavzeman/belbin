@@ -1,3 +1,14 @@
+export type Results = {
+  sh: number
+  ri: number
+  co: number
+  tw: number
+  im: number
+  cf: number
+  pl: number
+  me: number
+}
+
 type InputsSliceInitialState = {
   inputs: {
     [index: string]: { value: number; selected: boolean }
@@ -5,6 +16,7 @@ type InputsSliceInitialState = {
   sums: {
     [index: string]: number
   }
+  results: Results
 }
 
 // prettier-ignore
@@ -19,17 +31,18 @@ export const inputsSliceInitialState: InputsSliceInitialState = {
     q6a: { value: 0, selected: false }, q6b: { value: 0, selected: false }, q6c: { value: 0, selected: false }, q6d: { value: 0, selected: false }, q6e: { value: 0, selected: false }, q6f: { value: 0, selected: false }, q6g: { value: 0, selected: false }, q6h: { value: 0, selected: false },
     q7a: { value: 0, selected: false }, q7b: { value: 0, selected: false }, q7c: { value: 0, selected: false }, q7d: { value: 0, selected: false }, q7e: { value: 0, selected: false }, q7f: { value: 0, selected: false }, q7g: { value: 0, selected: false }, q7h: { value: 0, selected: false },
   },
-  // inputs: {
-  //   q1a: 0, q1b: 0, q1c: 0, q1d: 0, q1e: 0, q1f: 0, q1g: 0, q1h: 0,
-  //   q2a: 0, q2b: 0, q2c: 0, q2d: 0, q2e: 0, q2f: 0, q2g: 0, q2h: 0,
-  //   q3a: 0, q3b: 0, q3c: 0, q3d: 0, q3e: 0, q3f: 0, q3g: 0, q3h: 0,
-  //   q4a: 0, q4b: 0, q4c: 0, q4d: 0, q4e: 0, q4f: 0, q4g: 0, q4h: 0,
-  //   q5a: 0, q5b: 0, q5c: 0, q5d: 0, q5e: 0, q5f: 0, q5g: 0, q5h: 0,
-  //   q6a: 0, q6b: 0, q6c: 0, q6d: 0, q6e: 0, q6f: 0, q6g: 0, q6h: 0,
-  //   q7a: 0, q7b: 0, q7c: 0, q7d: 0, q7e: 0, q7f: 0, q7g: 0, q7h: 0,
-  // },
   sums: {
     q1: 0, q2: 0, q3: 0, q4: 0, q5: 0, q6: 0, q7: 0,
+  },
+  results: {
+    sh: 0,
+    ri: 0,
+    co: 0,
+    tw: 0,
+    im: 0,
+    cf: 0,
+    pl: 0,
+    me: 0,
   }
 }
 
