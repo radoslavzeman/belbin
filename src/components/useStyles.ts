@@ -1,9 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    position: 'relative',
-  },
   paper: {
     marginTop: theme.spacing(3),
   },
@@ -13,9 +10,11 @@ const useStyles = makeStyles((theme) => ({
   },
   sectionHeader: {
     padding: theme.spacing(2),
-    background: theme.palette.grey['300'],
+    // background: theme.palette.primary.light,
     borderTopLeftRadius: theme.shape.borderRadius,
     borderTopRightRadius: theme.shape.borderRadius,
+    borderColor: theme.palette.grey['100'],
+    borderBottom: `1px solid ${theme.palette.grey['300']}`,
   },
   sectionTitle: {
     flex: 1,
@@ -29,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
   chart: {
     padding: theme.spacing(1, 0),
+  },
+  results: {
+    padding: theme.spacing(2, 10, 1),
   },
 }))
 

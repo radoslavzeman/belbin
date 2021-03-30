@@ -35,9 +35,9 @@ function BelbinForm() {
     <>
       <CssBaseline />
 
-      <AppBar position="absolute" color="default" className={classes.appBar}>
+      <AppBar position="relative" color="default">
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" color="inherit" noWrap align="center">
             Belbinov test tímových rolí
           </Typography>
         </Toolbar>
@@ -74,6 +74,48 @@ function BelbinForm() {
               <Grid item xs={12}>
                 <Paper className={classes.chart}>
                   <HighchartsReact highcharts={Highcharts} options={options} useRef="chartComponent1" />
+                  <Grid container spacing={1} justify="center" className={classes.results}>
+                    <Grid item>
+                      <Typography>
+                        Režisér (SH): <b>{results.sh}</b>
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                        Zháňač (RI): <b>{results.ri}</b>
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                        Predseda (CO): <b>{results.co}</b>
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                        Hasič (TW): <b>{results.tw}</b>
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                        Ťahač (IM): <b>{results.im}</b>
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                        Doťahovač (CF): <b>{results.cf}</b>
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                        Chrlič (PL): <b>{results.pl}</b>
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                        Analytik (ME): <b>{results.me}</b>
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </Paper>
               </Grid>
               <Grid container item xs={12} justify="center">

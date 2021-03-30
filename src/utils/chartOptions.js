@@ -7,18 +7,19 @@ const chartOptions = (resultValues) => {
     chart: {
       type: 'variablepie',
     },
-    colors: ['#2ec277', '#2db799', '#b7e886', '#007770'],
+    colors: ['#3f51b5', '#3f65b5', '#2b387c', '#4a3fb5'],
     title: {
       text: 'Váš výsledok Belbinovho testu',
     },
+    legend: true,
     series: [
       {
+        tooltip: {
+          pointFormat: `<b>{point.z}</b>`,
+        },
         minPointSize: 0,
-        // innerSize: "27%",
         zMin: 0,
         zMax: 27,
-        // sizeBy: 'area',
-        // name: "Job Match",
         data: [
           {
             name: 'Režisér (SH)',

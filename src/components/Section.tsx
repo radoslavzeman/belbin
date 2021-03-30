@@ -61,12 +61,18 @@ const Section = ({ questions, title, id }: Props) => {
                 selected={inputs[questionKey].selected}
               >
                 <TableCell padding="checkbox">
-                  <Checkbox checked={inputs[questionKey].selected} onChange={(e) => handleChange(e, questionKey)} />
+                  <Checkbox
+                    checked={inputs[questionKey].selected}
+                    disableRipple
+                    disableFocusRipple
+                    disableTouchRipple
+                    onChange={(e) => handleChange(e, questionKey)}
+                  />
                 </TableCell>
                 <TableCell>
                   <Typography variant="body1">{questionText}</Typography>
                 </TableCell>
-                <TableCell style={{ width: 100 }}>
+                <TableCell width={100}>
                   <TextField
                     id={questionKey}
                     name={questionKey}

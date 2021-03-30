@@ -2,11 +2,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { getSums } from '../utils/getSums'
-import { inputsSliceInitialState, Results } from './initialStates'
+import { inputsSliceInitialState, inputsSliceInitialStatePrefilled, Results } from './initialStates'
 
 export const inputsSlice = createSlice({
   name: 'inputs',
-  initialState: inputsSliceInitialState,
+  initialState: inputsSliceInitialStatePrefilled,
   reducers: {
     changeValue: {
       reducer(state, action: PayloadAction<{ id: string; value: number }, string>) {
