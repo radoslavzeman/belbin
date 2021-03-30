@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/belbin/static/js/main.1c670000.chunk.js",
-    "main.js.map": "/belbin/static/js/main.1c670000.chunk.js.map",
+    "main.js": "/belbin/static/js/main.b36eca26.chunk.js",
+    "main.js.map": "/belbin/static/js/main.b36eca26.chunk.js.map",
     "runtime-main.js": "/belbin/static/js/runtime-main.afda85aa.js",
     "runtime-main.js.map": "/belbin/static/js/runtime-main.afda85aa.js.map",
-    "static/js/2.94b33d9c.chunk.js": "/belbin/static/js/2.94b33d9c.chunk.js",
-    "static/js/2.94b33d9c.chunk.js.map": "/belbin/static/js/2.94b33d9c.chunk.js.map",
+    "static/js/2.58894bfd.chunk.js": "/belbin/static/js/2.58894bfd.chunk.js",
+    "static/js/2.58894bfd.chunk.js.map": "/belbin/static/js/2.58894bfd.chunk.js.map",
     "index.html": "/belbin/index.html",
-    "static/js/2.94b33d9c.chunk.js.LICENSE.txt": "/belbin/static/js/2.94b33d9c.chunk.js.LICENSE.txt"
+    "static/js/2.58894bfd.chunk.js.LICENSE.txt": "/belbin/static/js/2.58894bfd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.afda85aa.js",
-    "static/js/2.94b33d9c.chunk.js",
-    "static/js/main.1c670000.chunk.js"
+    "static/js/2.58894bfd.chunk.js",
+    "static/js/main.b36eca26.chunk.js"
   ]
 }
