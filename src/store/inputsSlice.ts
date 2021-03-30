@@ -6,7 +6,7 @@ import { inputsSliceInitialState, inputsSliceInitialStatePrefilled, Results } fr
 
 export const inputsSlice = createSlice({
   name: 'inputs',
-  initialState: inputsSliceInitialStatePrefilled,
+  initialState: inputsSliceInitialState,
   reducers: {
     changeValue: {
       reducer(state, action: PayloadAction<{ id: string; value: number }, string>) {
