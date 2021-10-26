@@ -35,7 +35,7 @@ function BelbinForm() {
     <>
       <CssBaseline />
 
-      <AppBar position="relative" color="default">
+      <AppBar position="relative" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap align="center">
             Belbinov test tímových rolí

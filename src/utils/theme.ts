@@ -1,31 +1,83 @@
-import { createMuiTheme, lighten } from '@material-ui/core/styles'
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
-// eslint-disable-next-line import/prefer-default-export
-export const theme = createMuiTheme({
-  // palette: {
-  //   primary: {
-  //     // light: '#47C8FF',
-  //     // main: '#02a8dd',
-  //     // dark: '#237699',
-  //     // contrastText: '#fff',
-  //   },
-  //   secondary: {
-  //     // light: '#FF4766',
-  //     // main: '#ffb03a',
-  //     // dark: '#991C30',
-  //     // contrastText: '#fff',
-  //   },
-  //   background: {
-  //     // default: '#fff', // lighten('#02a8dd', 0.95),
-  //   },
-  // },
-  //
-  // overrides: {
-  //   MuiPaper: {
-  //     elevation1: {
-  //       // boxShadow:
-  //       //   '0px 6px 6px -3px rgba(1,118,155,0.1),0px 10px 14px 1px rgba(1,118,155,0.07),0px 4px 18px 3px rgba(1,118,155,0.06)',
-  //     },
-  //   },
-  // },
+declare module '@material-ui/core/styles' {
+  interface Theme {
+    myPalette: {
+      hoverColor: string
+      tableHeadColor: string
+    }
+  }
+  interface ThemeOptions {
+    myPalette?: {
+      hoverColor?: string
+      tableHeadColor?: string
+    }
+  }
+}
+
+// eslint-disable-next-line import/no-mutable-exports
+let theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#1976d2', // default mui
+      contrastText: '#fff',
+    },
+    secondary: {
+      main: '#41b6e6', // cx
+    },
+    background: {
+      default: '#f6f8fb',
+    },
+  },
+  myPalette: {
+    hoverColor: '#f4f7fa',
+    tableHeadColor: '#4d555d',
+  },
+  shape: {
+    borderRadius: 2,
+  },
 })
+
+theme = createMuiTheme(theme, {
+  components: {
+    MuiButton: {
+      defaultProps: {
+        disableElevation: true,
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: '0px 1px 2px 0px rgb(0, 0, 0, 0.16)',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: '#e9ebee',
+          '& :hover': {
+            backgroundColor: theme.myPalette.hoverColor,
+          },
+        },
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        head: {
+          color: theme.palette.common.white,
+        },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          '&:last-child td, &:last-child th': { border: 0 },
+        },
+        head: {
+          backgroundColor: theme.myPalette.tableHeadColor,
+        },
+      },
+    },
+  },
+})
+
+theme = responsiveFontSizes(theme)
+
+export default theme
