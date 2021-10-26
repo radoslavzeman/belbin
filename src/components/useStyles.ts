@@ -4,6 +4,10 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(3),
   },
+  appBar: {
+    backgroundColor: 'white',
+    boxShadow: '0 0 10px 0 rgb(36 38 40 / 10%)',
+  },
   initText: {
     marginTop: theme.spacing(3),
     padding: theme.spacing(2),
